@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Fraud Detection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #0a0a0a;
+            color: #ffffff;
+            text-align: center;
+            scroll-behavior: smooth;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 50px;
+            align-items: center;
+            background-color: #0a0a0a;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .navbar a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 400;
+        }
+
+        .navbar a:hover {
+            color: #777;
+        }
+
+        .hero {
+            padding: 120px 20px 60px;
+            background-color: #0a0a0a;
+        }
+
+        .hero h1 {
+            font-size: 36px;
+            font-weight: 600;
+        }
+
+        .hero p {
+            font-size: 16px;
+            color: #cccccc;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        .hero img {
+            max-width: 80%;
+            margin: 30px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 30px;
+            background-color: #4a00e0;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: #3700b3;
+        }
+
+        section {
+            margin: 40px 0;
+            padding: 20px;
+            background-color: #0a0a0a;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer {
+            padding: 40px 20px;
+            background-color: #0a0a0a;
+        }
+
+        .footer p {
+            margin-bottom: 20px;
+            color: #cccccc;
+        }
+
+        .footer img {
+            margin: 0 15px;
+            height: 30px;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        button.upload-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        button.upload-btn:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        label.upload-label {
+            display: inline-block;
+            background-color: #28a745;
+            color: white;
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        label.upload-label:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="logo">AI Fraud Detection</div>
+        <nav>
+            <a href="#hero">Home</a>
+            <a href="#spam-detection">Spam Detection</a>
+            <a href="#deepfake-detection">Deepfake Detection</a>
+            <a href="#vkyc-verification">VKYC Verification</a>
+            <a href="#about">About</a>
+        </nav>
+    </header>
+
+
+    <section id="hero" class="hero">
+        <h1>Secure Your App with <span style="color: #4a00e0;">AI Fraud Detection</span></h1>
+        <p>Detect spam, deepfakes, and fraudulent activities with cutting-edge AI solutions. Make the digital world
+            safer.</p>
+        <img src="ai-detection.png" alt="AI Detection Illustration">
+        <div>
+            <a href="#spam-detection" class="btn">Get Started</a>
+        </div>
+        <p>Revolutionizing fraud detection since 2023</p>
+    </section>
+
+    <main>
+        <section id="spam-detection">
+            <h2>Spam Detection</h2>
+
+            <label for="audioFile" class="upload-label">Choose File</label>
+            <input type="file" id="audioFile">
+
+            <button class="upload-btn" onclick="detectSpam()">Detect Spam</button>
+            <p id="spamResult"></p>
+        </section>
+
+        <section id="deepfake-detection">
+            <h2>Deepfake Detection</h2>
+            <label for="audioFile" class="upload-label">Choose File</label>
+            <input type="file" id="audioFile">
+            <button class="upload-btn" onclick="detectDeepfake()">Detect Deepfake</button>
+            <p id="deepfakeResult"></p>
+        </section>
+
+        <section id="vkyc-verification">
+            <h2>VKYC Verification</h2>
+            <label for="audioFile" class="upload-label">Choose File 1 </label>
+            <label for="audioFile" class="upload-label">Choose File 2 </label>
+            <input type="file" id="idPhoto">
+            <input type="file" id="livePhoto">
+            <button class="upload-btn" onclick="verifyVKYC()">Verify VKYC</button>
+            <p id="vkycResult"></p>
+        </section>
+
+        <section id="about">
+            <h2>About</h2>
+            <p>We provide state-of-the-art AI solutions to detect fraud and secure online platforms. Our mission is to
+                create a safer digital ecosystem for everyone.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Developed by: <strong style="color:#007bff">Chinnmaya Karwal</strong> & <strong><a style="color:#007bff"
+                    href="https://72897.github.io/port_repo/">Kunal Singh</a></strong></p>
+        <p>&copy; 2025 AI Fraud Detection Platform. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        async function detectSpam() {
+            let audio = document.getElementById('audioFile').files[0];
+            if (!audio) {
+                document.getElementById('spamResult').innerText = "Please upload an audio file.";
+                return;
+            }
+
+            let formData = new FormData();
+            formData.append('audio', audio);
+
+            try {
+                let response = await fetch('/detect_spam', {
+                    method: 'POST',
+                    body: formData
+                });
+                let result = await response.json();
+                document.getElementById('spamResult').innerText = "Result: " + result.result;
+            } catch (error) {
+                document.getElementById('spamResult').innerText = "Error: " + error.message;
+            }
+        }
+
+        async function detectDeepfake() {
+            let video = document.getElementById('videoFile').files[0];
+            if (!video) {
+                document.getElementById('deepfakeResult').innerText = "Please upload a video file.";
+                return;
+            }
+
+            let formData = new FormData();
+            formData.append('video', video);
+
+            try {
+                let response = await fetch('/detect_deepfake', {
+                    method: 'POST',
+                    body: formData
+                });
+                let result = await response.json();
+                document.getElementById('deepfakeResult').innerText = "Result: " + result.result;
+            } catch (error) {
+                document.getElementById('deepfakeResult').innerText = "Error: " + error.message;
+            }
+        }
+
+        async function verifyVKYC() {
+            let idPhoto = document.getElementById('idPhoto').files[0];
+            let livePhoto = document.getElementById('livePhoto').files[0];
+
+            if (!idPhoto || !livePhoto) {
+                document.getElementById('vkycResult').innerText = "Please upload both ID photo and live photo.";
+                return;
+            }
+
+            let formData = new FormData();
+            formData.append('id_photo', idPhoto);
+            formData.append('live_photo', livePhoto);
+
+            try {
+                let response = await fetch('/verify_vkyc', {
+                    method: 'POST',
+                    body: formData
+                });
+                let result = await response.json();
+                document.getElementById('vkycResult').innerText = "Result: " + result.face_match;
+            } catch (error) {
+                document.getElementById('vkycResult').innerText = "Error: " + error.message;
+            }
+        }
+
+    </script>
+</body>
+
+</html>
